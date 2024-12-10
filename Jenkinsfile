@@ -2,10 +2,10 @@ pipeline {
     agent any
     
     environment {
-        DOCKER_HUB_USERNAME = 'votre_utilisateur_docker_hub'
+        DOCKER_HUB_USERNAME = 'mbRabaa'
         DOCKER_HUB_REPO = 'mon_repo_docker'
         IMAGE_NAME = 'spring-boot-app'
-        GITHUB_REPO = 'https://github.com/votre_utilisateur/votre_projet.git'
+        GITHUB_REPO = 'https://github.com/mbRabaa/examen-devops.git'
     }
 
     triggers {
@@ -43,7 +43,7 @@ pipeline {
         stage('Pousser l\'image sur Docker Hub') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    withCredentials([usernamePassword(credentialsId: 'DockerHub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                         sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin"
                     }
                     sh 'docker push ${DOCKER_HUB_USERNAME}/${DOCKER_HUB_REPO}:${IMAGE_NAME}'
