@@ -1,0 +1,7 @@
+# Ignore Maven target directory
+/target/
+/.idea/
+/.project
+.classpath
+.DS_Store
+Thumbs.db
